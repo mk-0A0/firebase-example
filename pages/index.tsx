@@ -3,7 +3,7 @@ import {Button, Container, FormControl, FormLabel, Input, Stack} from "@chakra-u
 
 const Home: NextPage = () => {
   return (
-    <Container>
+    <Container py={10}>
       <Stack>
         <FormControl>
           <FormLabel>メールアドレス</FormLabel>
