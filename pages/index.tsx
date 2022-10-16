@@ -1,5 +1,5 @@
 import type {NextPage} from 'next'
-import {Button, Container, FormControl, FormLabel, Input, Stack} from "@chakra-ui/react";
+import {Button, Container, FormControl, FormLabel, Heading, Input, Spacer, Stack} from "@chakra-ui/react";
 import {createUserWithEmailAndPassword, getAuth, sendEmailVerification} from "@firebase/auth";
 import {useState} from "react";
 import {FirebaseError} from "@firebase/app";
@@ -23,6 +23,8 @@ const Home: NextPage = () => {
 
   return (
     <Container py={10}>
+      <Heading>新規登録</Heading>
+      <Spacer h={10}/>
       <Stack>
         <FormControl>
           <FormLabel>メールアドレス</FormLabel>
