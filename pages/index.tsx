@@ -1,6 +1,6 @@
 import type {NextPage} from 'next'
 import {Button, Container, FormControl, FormLabel, Input, Stack} from "@chakra-ui/react";
-import {createUserWithEmailAndPassword, getAuth} from "@firebase/auth";
+import {createUserWithEmailAndPassword, getAuth, sendEmailVerification} from "@firebase/auth";
 import {useState} from "react";
 import {FirebaseError} from "@firebase/app";
 
@@ -12,7 +12,8 @@ const Home: NextPage = () => {
     console.log(email, password)
     try {
       const auth = getAuth()
-      await createUserWithEmailAndPassword(auth, email, password)
+      const {user} = await createUserWithEmailAndPassword(auth, email, password)
+      await sendEmailVerification(user)
     } catch (e) {
       if (e instanceof FirebaseError) {
         console.log('error', e)
