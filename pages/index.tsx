@@ -1,8 +1,9 @@
 import type {NextPage} from 'next'
-import {Button, Container, FormControl, FormLabel, Heading, Input, Spacer, Stack} from "@chakra-ui/react";
+import {Button, Container, FormControl, FormLabel, Heading, Input, Spacer, Stack, Text} from "@chakra-ui/react";
 import {createUserWithEmailAndPassword, getAuth, sendEmailVerification} from "@firebase/auth";
 import {useState} from "react";
 import {FirebaseError} from "@firebase/app";
+import Link from 'next/dist/client/link';
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState('')
@@ -35,6 +36,11 @@ const Home: NextPage = () => {
           <Input value={password} onChange={(e) => setPassword(e.target.value)} type={'password'}/>
         </FormControl>
         <Button onClick={() => onCreateUser()}>新規登録</Button>
+        <Spacer h={"xl"}/>
+        <Text size={'sm'}>アカウントをお持ちの方</Text>
+        <Link href={'/signin'}>
+          <Button as={"a"}>ログイン</Button>
+        </Link>
       </Stack>
     </Container>
   )
