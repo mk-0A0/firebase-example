@@ -4,6 +4,7 @@ import {createUserWithEmailAndPassword, getAuth, sendEmailVerification} from "@f
 import {useState} from "react";
 import {FirebaseError} from "@firebase/app";
 import Link from 'next/dist/client/link';
+import {pagesPath} from "../lib/$path";
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState('')
@@ -38,7 +39,7 @@ const Home: NextPage = () => {
         <Button onClick={() => onCreateUser()}>新規登録</Button>
         <Spacer h={"xl"}/>
         <Text size={'sm'}>アカウントをお持ちの方</Text>
-        <Link href={'/signin'}>
+        <Link href={pagesPath.signin.$url()}>
           <Button as={"a"}>ログイン</Button>
         </Link>
       </Stack>
