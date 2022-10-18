@@ -2,17 +2,21 @@ import {Button, Container, FormControl, FormLabel, Heading, Input, Spacer, Stack
 import {useState} from "react";
 import {FirebaseError} from "@firebase/app";
 import {getAuth, signInWithEmailAndPassword} from "@firebase/auth";
+import {pagesPath} from "../lib/$path";
+import {useRouter} from "next/router";
 
 export const signin = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const toast = useToast()
+  const {push} = useRouter()
 
   const onSignin = async () => {
     console.log(email, password)
     try {
       const auth = getAuth()
       await signInWithEmailAndPassword(auth, email, password)
+      await push(pagesPath.mypage.$url())
       toast({status: "success", title: 'ログインしました'})
     } catch (e) {
       if (e instanceof FirebaseError) {
